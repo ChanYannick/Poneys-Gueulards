@@ -1,0 +1,68 @@
+<html ng-app ="poneyApp">
+    <head>
+        <meta charset="utf-8"/>
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet"/>
+        <link href="css/style.css" rel="stylesheet"/>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.6.1/angular.min.js"></script>
+        <script src="js/ponyclub.js"></script>
+    </head>
+    <body ng-controller="ListController as lc">
+        <div class="container">
+            <h1>Pony Club</h1>
+            <div class="row">
+                <div class="col-md-8">
+                    <div class="panel panel-default" ng-repeat="horse in lc.poneys | filter:searchValue">
+                      <div class="panel-heading">{{horse.name}}</div>
+                      <div class="panel-body">
+                        {{horse.description}}
+                      </div>
+                    </div>
+                    <div class="loader">
+                        <img src="img/spin.gif"/>
+                    </div>
+                    <div class="panel panel-danger hidden">
+                      <div class="panel-heading">Error</div>
+                      <div class="panel-body">
+                        Could not load data from server. Please try again later.
+                      </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Find a pony</div>
+                          <div class="panel-body">
+                            <form>
+                                  <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="searchValue">
+                                  </div>
+                              </form>
+                          </div>
+                    </div>
+                    <div class="panel panel-info">
+                        <div class="panel-heading">Add new pony to the club</div>
+                          <div class="panel-body">
+                            <form  ng-submit="controller.addPoney()">
+                                  <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input type="text" class="form-control" id="name" name="name" placeholder="Name" ng-model="controller.namePoney">
+                                  </div>
+                                  <div class="form-group">
+                                    <label for="description">Description</label>
+                                    <input type="text" class="form-control" id="description" name="description" placeholder="description" ng-model="controller.descPoney">
+                                  </div>
+                         
+                                <div class="form-group">
+                                    <div class="col-sm-10">
+                                      <button type="submit" class="btn btn-primary">Add</button>
+                                    </div>
+                                </div>
+                              </form>
+                          </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </body>
+</html>
